@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <declare-styleable name="DoraBottomBar">
+        <attr name="dview_bb_tabCount" format="integer" />
+        <attr name="dview_bb_lottieNormal" format="reference" />
+        <attr name="dview_bb_lottieSelected" format="reference" />
+        <attr name="dview_bb_tabTitles" format="reference" />
+        <attr name="dview_bb_textColorNormal" format="color" />
+        <attr name="dview_bb_textColorSelected" format="color" />
+        <attr name="dview_bb_defaultIndex" format="integer" />
+        <attr name="dview_bb_textSize" format="dimension" />
+        <attr name="dview_bb_iconTextMargin" format="dimension" />
+    </declare-styleable>
+</resources>
