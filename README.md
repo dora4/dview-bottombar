@@ -2,6 +2,9 @@ dview-bottombar
 ![Release](https://jitpack.io/v/dora4/dview-bottombar.svg)
 --------------------------------
 
+#### 卡片
+![DORA视图 界面传送门](https://github.com/user-attachments/assets/4474df90-817e-48a5-9dfb-0efca43f68b8)
+
 #### Gradle依赖配置
 
 ```groovy
