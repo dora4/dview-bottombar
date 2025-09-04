@@ -28,7 +28,7 @@ class DoraBottomBar @JvmOverloads constructor(
     private var titles: Array<String> = arrayOf()
     private var colorNormal: Int = 0
     private var colorSelected: Int = 0
-    private var currentIndex: Int = 0
+    private var currentIndex: Int = -1
     private var textSize: Float = 12f
     private var iconTextMargin: Int = 4
 
@@ -89,7 +89,6 @@ class DoraBottomBar @JvmOverloads constructor(
 
             // Lottie 图标
             val icon = LottieAnimationView(context).apply {
-                // 初始化时全部加载 normalRes
                 setAnimation(normalRes.getOrNull(i) ?: 0)
                 repeatCount = 0
             }
@@ -119,16 +118,19 @@ class DoraBottomBar @JvmOverloads constructor(
     }
 
     private fun selectTab(index: Int, notify: Boolean) {
-        if (index == currentIndex) return
+        // 如果是首次初始化，currentIndex 还没设置好，允许播放动画
+        if (index == currentIndex && currentIndex >= 0) return
 
-        // 上一个恢复未选中
-        iconViews[currentIndex].apply {
-            setAnimation(normalRes.getOrNull(currentIndex) ?: 0)
-            playAnimation()
+        // 如果有上一个 tab，就恢复成未选中状态
+        if (currentIndex in 0 until tabCount) {
+            iconViews[currentIndex].apply {
+                setAnimation(normalRes.getOrNull(currentIndex) ?: 0)
+                playAnimation()
+            }
+            titleViews[currentIndex].setTextColor(colorNormal)
         }
-        titleViews[currentIndex].setTextColor(colorNormal)
 
-        // 新的选中状态
+        // 新选中的 tab
         iconViews[index].apply {
             setAnimation(selectedRes.getOrNull(index) ?: 0)
             playAnimation()
