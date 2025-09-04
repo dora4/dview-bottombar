@@ -96,7 +96,7 @@ class DoraBottomBar @JvmOverloads constructor(
             // 文本
             val titleView = TextView(context).apply {
                 text = titles.getOrNull(i) ?: ""
-                setTextColor(if (i == currentIndex) colorSelected else colorNormal)
+                setTextColor(if (i == currentIndex || currentIndex == -1) colorSelected else colorNormal)
                 setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize)
             }
             // 设置图标与文字间距
@@ -118,12 +118,11 @@ class DoraBottomBar @JvmOverloads constructor(
     }
 
     private fun selectTab(index: Int, notify: Boolean) {
-        // 如果是首次初始化，currentIndex 还没设置好，允许播放动画
         val firstInit = currentIndex == -1
-
-        if (index == currentIndex && !firstInit) return
-        if (firstInit) {
-            currentIndex = 0
+        currentIndex = if (firstInit) {
+            0
+        } else {
+            index
         }
         // 恢复上一个 tab 的未选中状态
         if (currentIndex in 0 until tabCount) {
@@ -136,8 +135,8 @@ class DoraBottomBar @JvmOverloads constructor(
         }
 
         // 设置新选中 tab 的动画
-        iconViews[currentIndex].apply {
-            setAnimation(selectedRes.getOrNull(currentIndex) ?: 0)
+        iconViews[index].apply {
+            setAnimation(selectedRes.getOrNull(index) ?: 0)
             repeatCount = 0
             // 如果是首次初始化，播放一次完整动画并停在最后一帧
             if (firstInit) {
@@ -148,8 +147,8 @@ class DoraBottomBar @JvmOverloads constructor(
             playAnimation()
         }
 
-        titleViews[currentIndex].setTextColor(colorSelected)
-        if (notify) listener?.onTabSelected(currentIndex)
+        titleViews[index].setTextColor(colorSelected)
+        if (notify) listener?.onTabSelected(index)
     }
 
     fun setCurrentTab(index: Int) {
