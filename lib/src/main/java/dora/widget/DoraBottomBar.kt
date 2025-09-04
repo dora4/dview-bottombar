@@ -57,7 +57,7 @@ class DoraBottomBar @JvmOverloads constructor(
                 R.styleable.DoraBottomBar_dview_bb_textColorSelected,
                 0xFF000000.toInt()
             )
-            currentIndex = ta.getInt(R.styleable.DoraBottomBar_dview_bb_defaultIndex, 0)
+            currentIndex = ta.getInt(R.styleable.DoraBottomBar_dview_bb_defaultIndex, currentIndex)
             textSize = ta.getDimension(
                 R.styleable.DoraBottomBar_dview_bb_textSize,
                 12f * resources.displayMetrics.scaledDensity
