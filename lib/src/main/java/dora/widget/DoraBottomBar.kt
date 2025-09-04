@@ -70,7 +70,7 @@ class DoraBottomBar @JvmOverloads constructor(
         }
 
         createTabs()
-        selectTab(currentIndex, notify = false)
+        selectTab(0, notify = false)
     }
 
     private fun createTabs() {
@@ -118,12 +118,7 @@ class DoraBottomBar @JvmOverloads constructor(
     }
 
     private fun selectTab(index: Int, notify: Boolean) {
-        val firstInit = currentIndex == -1
-        currentIndex = if (firstInit) {
-            0
-        } else {
-            index
-        }
+        val firstInit = (currentIndex == -1)
         // 恢复上一个 tab 的未选中状态
         if (currentIndex in 0 until tabCount) {
             iconViews[currentIndex].apply {
@@ -147,7 +142,8 @@ class DoraBottomBar @JvmOverloads constructor(
             playAnimation()
         }
 
-        titleViews[index].setTextColor(colorSelected)
+        titleViews[currentIndex].setTextColor(colorSelected)
+        currentIndex = index
         if (notify) listener?.onTabSelected(index)
     }
 
