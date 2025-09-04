@@ -142,7 +142,7 @@ class DoraBottomBar @JvmOverloads constructor(
             playAnimation()
         }
 
-        titleViews[currentIndex].setTextColor(colorSelected)
+        titleViews[index].setTextColor(colorSelected)
         currentIndex = index
         if (notify) listener?.onTabSelected(index)
     }
