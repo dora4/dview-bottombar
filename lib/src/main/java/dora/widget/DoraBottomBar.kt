@@ -86,14 +86,14 @@ class DoraBottomBar @JvmOverloads constructor(
                 layoutParams = LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f)
                 setOnClickListener { selectTab(i, notify = true) }
             }
+
             // Lottie 图标
             val icon = LottieAnimationView(context).apply {
-                setAnimation(
-                    if (i == currentIndex) selectedRes.getOrNull(i) ?: 0
-                    else normalRes.getOrNull(i) ?: 0
-                )
+                // 初始化时全部加载 normalRes
+                setAnimation(normalRes.getOrNull(i) ?: 0)
                 repeatCount = 0
             }
+
             // 文本
             val titleView = TextView(context).apply {
                 text = titles.getOrNull(i) ?: ""
