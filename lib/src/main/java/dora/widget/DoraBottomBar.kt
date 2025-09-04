@@ -136,8 +136,8 @@ class DoraBottomBar @JvmOverloads constructor(
         }
 
         // 设置新选中 tab 的动画
-        iconViews[index].apply {
-            setAnimation(selectedRes.getOrNull(index) ?: 0)
+        iconViews[currentIndex].apply {
+            setAnimation(selectedRes.getOrNull(currentIndex) ?: 0)
             repeatCount = 0
             // 如果是首次初始化，播放一次完整动画并停在最后一帧
             if (firstInit) {
@@ -148,9 +148,8 @@ class DoraBottomBar @JvmOverloads constructor(
             playAnimation()
         }
 
-        titleViews[index].setTextColor(colorSelected)
-        currentIndex = index
-        if (notify) listener?.onTabSelected(index)
+        titleViews[currentIndex].setTextColor(colorSelected)
+        if (notify) listener?.onTabSelected(currentIndex)
     }
 
     fun setCurrentTab(index: Int) {
