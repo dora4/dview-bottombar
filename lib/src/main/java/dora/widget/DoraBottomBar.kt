@@ -122,7 +122,9 @@ class DoraBottomBar @JvmOverloads constructor(
         val firstInit = currentIndex == -1
 
         if (index == currentIndex && !firstInit) return
-
+        if (firstInit) {
+            currentIndex = 0
+        }
         // 恢复上一个 tab 的未选中状态
         if (currentIndex in 0 until tabCount) {
             iconViews[currentIndex].apply {
