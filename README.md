@@ -71,8 +71,7 @@ bottomBar.setOnTabSelectedListener(object : DoraBottomBar.OnTabSelectedListener 
 })
 ```
 
-#### 附录
-20套模板设计图
+#### 附录 ⦁ 20套模板设计图
 <img width="750" height="750" alt="1" src="https://github.com/user-attachments/assets/347e1ba4-9929-4706-9531-e04f0f217b31" />
 <img width="750" height="750" alt="2" src="https://github.com/user-attachments/assets/acf78a49-4fca-4364-a1af-a16fb11c825b" />
 <img width="750" height="750" alt="3" src="https://github.com/user-attachments/assets/f8d39aef-9e12-4f39-a505-9777cb741c8e" />
